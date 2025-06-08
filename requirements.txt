@@ -1,6 +1,7 @@
-fpdf2==2.7.6
 Flask==3.0.0
+gunicorn
 Werkzeug==3.0.1
+fpdf2==2.7.6
 Pillow==10.1.0
 numpy==1.24.3
 opencv-python==4.8.1.78
