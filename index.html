@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignatureVerify Pro - Professional Digital Signature Verification</title>
+    <meta name="description" content="Professional signature verification platform for document authentication and fraud prevention">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div class="logo-text">
+                        <h1>SignatureVerify Pro</h1>
+                        <p>Professional Document Authentication</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="#verification" class="nav-link active">Verification</a>
+                    <a href="#reports" class="nav-link">Reports</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section id="verification" class="section">
+                <div class="hero-section">
+                    <h2>Advanced Signature Verification</h2>
+                    <p>Upload and verify digital signatures with professional-grade accuracy</p>
+                </div>
+
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <h3>Upload Signatures for Verification</h3>
+                        <p>Upload the original signature and the signature to verify</p>
+                        
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-icon">📁</div>
+                                <h4>Drop signature images here</h4>
+                                <p>or click to browse files</p>
+                                <input type="file" id="fileInput" name="signatures" multiple accept="image/*" hidden>
+                                <button type="button" class="btn-upload" onclick="document.getElementById('fileInput').click()">
+                                    Choose Files
+                                </button>
+                            </div>
+                            
+                            <div id="filePreview" class="file-preview">
+                                <div class="preview-card">
+                                    <h4>Reference Signature</h4>
+                                    <div class="preview-image-container">
+                                        <img src="${file.data}" alt="Signature ${index + 1}">
+                                    </div>
+                                    <div class="preview-actions">
+                                        <div class="preview-button-wrapper">
+                                            <button type="button" class="btn-remove" data-index="${index}">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-image-container">
+                                    <h5>Verified Signature</h5>
+                                    <div class="result-image-wrapper">
+                                        <img src="${file.data}" alt="Signature ${index + 1}">
+                                    </div>
+                                    <div class="result-actions">
+                                        <div class="result-button-wrapper">
+                                            <button type="button" class="btn-remove" data-index="${index}">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="verify-button-container">
+                                <div class="verify-button-wrapper">
+                                    <button type="submit" class="btn-verify" id="verifyBtn" disabled>
+                                        Verify Signatures
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <div class="results-card">
+                        <h3>Verification Results</h3>
+                        <div id="resultsContent"></div>
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h3>Professional Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h4>Advanced Analysis</h4>
+                            <p>Sophisticated algorithms analyze signature patterns and characteristics</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h4>Confidence Scoring</h4>
+                            <p>Detailed confidence percentages and verification metrics</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h4>Secure Processing</h4>
+                            <p>Bank-level security for all uploaded documents and signatures</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h4>Detailed Reports</h4>
+                            <p>Comprehensive verification reports for legal documentation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reports" class="section">
+                <div class="reports-header">
+                    <h2>Verification Reports</h2>
+                    <p>History of all signature verifications</p>
+                </div>
+                <div class="reports-container">
+                    <div class="reports-filters">
+                        <div class="search-box">
+                            <input type="text" id="searchReports" placeholder="Search reports...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="filterStatus">
+                                <option value="all">All Results</option>
+                                <option value="match">Matches</option>
+                                <option value="no-match">No Matches</option>
+                            </select>
+                            <select id="filterDate">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="reports-list" id="reportsList">
+                        <!-- Reports will be dynamically added here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Report Details Modal -->
+    <div id="reportModal" class="report-modal">
+        <div class="report-modal-content">
+            <div class="report-modal-header">
+                <h3>Signature Verification Details</h3>
+                <button class="report-modal-close" onclick="verifier.closeReportModal()">×</button>
+            </div>
+            <div class="report-modal-body">
+                <div class="report-modal-signatures">
+                    <div class="signature-preview">
+                        <h4>Reference Signature</h4>
+                        <img id="referenceSignatureImg" src="" alt="Reference Signature">
+                        <div class="signature-label">Original Signature</div>
+                    </div>
+                    <div class="signature-preview">
+                        <h4>Verified Signature</h4>
+                        <img id="verifiedSignatureImg" src="" alt="Verified Signature">
+                        <div class="signature-label">Signature to Verify</div>
+                    </div>
+                </div>
+                <div class="report-modal-metrics">
+                    <div class="modal-metric">
+                        <div class="modal-metric-label">Overall Confidence</div>
+                        <div id="modalConfidence" class="modal-metric-value">0%</div>
+                    </div>
+                    <div class="modal-metric">
+                        <div class="modal-metric-label">Stroke Similarity</div>
+                        <div id="modalStrokeSimilarity" class="modal-metric-value">0%</div>
+                    </div>
+                    <div class="modal-metric">
+                        <div class="modal-metric-label">Pressure Analysis</div>
+                        <div id="modalPressureAnalysis" class="modal-metric-value">0%</div>
+                    </div>
+                    <div class="modal-metric">
+                        <div class="modal-metric-label">Verification Result</div>
+                        <div id="modalResult" class="modal-metric-value">-</div>
+                    </div>
+                </div>
+                <div class="report-modal-analysis">
+                    <h4>Detailed Analysis</h4>
+                    <ul id="modalAnalysisList">
+                        <!-- Analysis points will be added dynamically -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="delete-modal" id="deleteModal">
+        <div class="delete-modal-content">
+            <h3>Delete Report</h3>
+            <p>Are you sure you want to delete this report? This action cannot be undone.</p>
+            <div class="delete-modal-actions">
+                <button class="btn-cancel" onclick="verifier.closeDeleteModal()">Cancel</button>
+                <button class="btn-confirm-delete" onclick="verifier.confirmDelete()">Delete Report</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SignatureVerify Pro. Professional signature verification services.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
