@@ -2,13 +2,6 @@
 
 A professional digital signature verification platform that provides secure and accurate signature authentication.
 
-## Live Deployment 
-
-https://signature-verification-06oc.onrender.com
-
-                      
-                          (OPEN IN PC)
-
 ## Features ✨
 
 - 🔍 Advanced signature pattern analysis
