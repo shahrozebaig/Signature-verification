@@ -14,7 +14,19 @@ A professional digital signature verification platform that provides secure and 
 
 - Frontend: HTML5, CSS3, JavaScript
 - Backend: Python
+  
+---
 
+## Architecture Diagram
+
+
+
+<img width="1020" height="1445" alt="Screenshot 2025-11-15 040325" src="https://github.com/user-attachments/assets/eae7a42f-a621-4530-b1d3-fe40f87203d2" />
+
+
+
+
+---
 ## Getting Started 🚀
 
 1. Clone the repository:
