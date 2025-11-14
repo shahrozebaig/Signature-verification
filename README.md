@@ -21,7 +21,8 @@ A professional digital signature verification platform that provides secure and 
 
 
 
-<img width="1020" height="1445" alt="Screenshot 2025-11-15 040325" src="https://github.com/user-attachments/assets/eae7a42f-a621-4530-b1d3-fe40f87203d2" />
+
+<img width="1285" height="1461" alt="Screenshot 2025-11-15 040616" src="https://github.com/user-attachments/assets/2dab1be3-19f9-4686-9fa9-4012f785baa0" />
 
 
 
